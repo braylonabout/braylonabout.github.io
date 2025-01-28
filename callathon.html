@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="title" content="CALLATHON COUNTER">
-<meta name="description" content="Counts the CALLATHON days, hours, minutes, and seconds. (Both Calls)">
-<meta name="keywords" content="callathon, counters, discord">
-<meta name="robots" content="noindex, nofollow">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="language" content="English">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CALLATHON COUNTER</title>
     <style>
         body {
@@ -42,63 +38,24 @@
 <body>
     <div>
         <h1>CALLATHON COUNTER</h1>
-        <p>next milestone: 30 days</p>
+        <p>call ended</p>
         <div class="countdown">
             <div id="countdown-main">
-                <div id="main-days"></div>
-                <div id="main-hours"></div>
-                <div id="main-minutes"></div>
-                <div id="main-seconds"></div>
+                <div>30 DAYS</div>
+                <div>23 HOURS</div>
+                <div>9 MINUTES</div>
+                <div>25 SECONDS</div>
             </div>
             <div class="alternative">
                 <p>or</p>
                 <div id="countdown-alt">
-                    <div id="alt-days"></div>
-                    <div id="alt-hours"></div>
-                    <div id="alt-minutes"></div>
-                    <div id="alt-seconds"></div>
+                    <div>28 DAYS</div>
+                    <div>1 HOUR</div>
+                    <div>36 MINUTES</div>
+                    <div>9 SECONDS</div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        function updateCountdown() {
-            const mainStartTime = new Date('2024-12-20T09:17:01-08:00'); // PST
-            const altStartTime = new Date('2024-12-23T06:50:17-08:00'); // PST
-            const now = new Date();
-
-            const msPerSecond = 1000;
-            const msPerMinute = msPerSecond * 60;
-            const msPerHour = msPerMinute * 60;
-            const msPerDay = msPerHour * 24;
-
-            // Main countdown
-            const mainDiff = now - mainStartTime;
-            const mainDays = Math.floor(mainDiff / msPerDay);
-            const mainHours = Math.floor((mainDiff % msPerDay) / msPerHour);
-            const mainMinutes = Math.floor((mainDiff % msPerHour) / msPerMinute);
-            const mainSeconds = Math.floor((mainDiff % msPerMinute) / msPerSecond);
-
-            document.getElementById('main-days').innerText = `${mainDays} DAY(S)`;
-            document.getElementById('main-hours').innerText = `${mainHours} HOUR(S)`;
-            document.getElementById('main-minutes').innerText = `${mainMinutes} MINUTE(S)`;
-            document.getElementById('main-seconds').innerText = `${mainSeconds} SECOND(S)`;
-
-            // Alternative countdown
-            const altDiff = now - altStartTime;
-            const altDays = Math.floor(altDiff / msPerDay);
-            const altHours = Math.floor((altDiff % msPerDay) / msPerHour);
-            const altMinutes = Math.floor((altDiff % msPerHour) / msPerMinute);
-            const altSeconds = Math.floor((altDiff % msPerMinute) / msPerSecond);
-
-            document.getElementById('alt-days').innerText = `${altDays} DAY(S)`;
-            document.getElementById('alt-hours').innerText = `${altHours} HOUR(S)`;
-            document.getElementById('alt-minutes').innerText = `${altMinutes} MINUTE(S)`;
-            document.getElementById('alt-seconds').innerText = `${altSeconds} SECOND(S)`;
-        }
-
-        setInterval(updateCountdown, 1000);
-    </script>
 </body>
 </html>
