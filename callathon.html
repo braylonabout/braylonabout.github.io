@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="CALLATHON COUNTER">
+<meta name="description" content="Counts the CALLATHON days, hours, minutes, and seconds. (Both Calls)">
+<meta name="keywords" content="callathon, counters, discord">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
     <title>CALLATHON COUNTER</title>
     <style>
         body {
@@ -11,16 +15,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
-            background-color: #808080;
+            background-color: #FFFFFF;
             color: #000;
             font-family: Arial, sans-serif;
             text-align: center;
         }
 
-        h1 {
-            margin: 0;
-            font-size: 2em;
+        img.logo {
+            max-width: 300px;
+            height: auto;
         }
 
         .countdown {
@@ -28,34 +33,52 @@
             font-size: 1.5em;
         }
 
-        .alternative {
-            margin-top: 30px;
+        .view-link {
+            margin-top: 20px;
             font-size: 1em;
-            color: #222;
         }
     </style>
 </head>
 <body>
     <div>
-        <h1>CALLATHON COUNTER</h1>
-        <p>call ended</p>
+        <img src="callathon-logo.png" alt="CALLATHON LOGO" class="logo">
+        <p></p> <!-- caption -->
         <div class="countdown">
             <div id="countdown-main">
-                <div>30 DAYS</div>
-                <div>23 HOURS</div>
-                <div>9 MINUTES</div>
-                <div>25 SECONDS</div>
-            </div>
-            <div class="alternative">
-                <p>or</p>
-                <div id="countdown-alt">
-                    <div>28 DAYS</div>
-                    <div>1 HOUR</div>
-                    <div>36 MINUTES</div>
-                    <div>9 SECONDS</div>
-                </div>
+                <div id="main-days"></div>
+                <div id="main-hours"></div>
+                <div id="main-minutes"></div>
+                <div id="main-seconds"></div>
             </div>
         </div>
+        <div class="view-link">
+            <a href="/callathon/callathon1.html">(view the first callathon)</a>
+        </div>
     </div>
+
+    <script>
+        function updateCountdown() {
+            const mainStartTime = new Date('2024-12-20T09:17:01-08:00'); // PST
+            const now = new Date();
+
+            const msPerSecond = 1000;
+            const msPerMinute = msPerSecond * 60;
+            const msPerHour = msPerMinute * 60;
+            const msPerDay = msPerHour * 24;
+
+            const mainDiff = now - mainStartTime;
+            const mainDays = Math.floor(mainDiff / msPerDay);
+            const mainHours = Math.floor((mainDiff % msPerDay) / msPerHour);
+            const mainMinutes = Math.floor((mainDiff % msPerHour) / msPerMinute);
+            const mainSeconds = Math.floor((mainDiff % msPerMinute) / msPerSecond);
+
+            document.getElementById('main-days').innerText = `${mainDays} DAY(S)`;
+            document.getElementById('main-hours').innerText = `${mainHours} HOUR(S)`;
+            document.getElementById('main-minutes').innerText = `${mainMinutes} MINUTE(S)`;
+            document.getElementById('main-seconds').innerText = `${mainSeconds} SECOND(S)`;
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
