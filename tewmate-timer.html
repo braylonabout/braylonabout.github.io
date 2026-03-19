@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>countdown</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #000000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f0f0f;
+      --text: #ffffff;
+    }
+  }
+
+  body.dark {
+    --bg: #0f0f0f;
+    --text: #ffffff;
+  }
+
+  body.light {
+    --bg: #ffffff;
+    --text: #000000;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+
+  button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  #countdown {
+    font-size: 1.4rem;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<button onclick="toggleTheme()">toggle theme</button>
+
+<h1>time until tewmate is unbanned from roblox!</h1>
+<div id="countdown"></div>
+
+<script>
+const target = new Date('2026-09-18T18:23:00-04:00').getTime();
+
+function updateCountdown() {
+  const now = Date.now();
+  let diff = target - now;
+
+  if (diff < 0) diff = 0;
+
+  const ms = diff % 1000;
+  const totalSeconds = Math.floor(diff / 1000);
+
+  const seconds = totalSeconds % 60;
+  const totalMinutes = Math.floor(totalSeconds / 60);
+
+  const minutes = totalMinutes % 60;
+  const totalHours = Math.floor(totalMinutes / 60);
+
+  const hours = totalHours % 24;
+  const totalDays = Math.floor(totalHours / 24);
+
+  const weeks = Math.floor(totalDays / 7);
+  const days = totalDays % 7;
+
+  const months = Math.floor(totalDays / 30);
+
+  document.getElementById('countdown').innerHTML = `
+    ${months} months<br>
+    ${weeks} weeks<br>
+    ${days} days<br>
+    ${hours} hours<br>
+    ${minutes} minutes<br>
+    ${seconds} seconds<br>
+    ${ms.toString().padStart(3, '0')} ms
+  `;
+}
+
+setInterval(updateCountdown, 10);
+updateCountdown();
+
+function toggleTheme() {
+  if (document.body.classList.contains('dark')) {
+    document.body.classList.remove('dark');
+    document.body.classList.add('light');
+  } else {
+    document.body.classList.remove('light');
+    document.body.classList.add('dark');
+  }
+}
+</script>
+
+</body>
+</html>
